@@ -70,3 +70,42 @@ You will need to provide:
 - AI coding tools are allowed.
 - Your written analysis should be your own thinking.
 - Work independently.
+
+---
+
+## How to Run the System
+
+### 1. Setup Environment
+This project uses `uv` for fast dependency management.
+# Note: if you already have uv installed and downloaded the entire git repository, you can skip to step 2, the environment will be set up automatically during the first run.
+To set up the environment and install the required libraries, run:
+```bash
+uv init
+uv add ultralytics opencv-python pandas scikit-learn matplotlib
+```
+*(Alternatively, you can use `pip install ultralytics opencv-python pandas scikit-learn matplotlib` in your standard Python environment).*
+
+### 2. Prepare the Data
+The data preparation script parses `annotations.csv`, generates the 3-keypoint topology (Center, Hinge, Tab), and splits the images into train/validation sets for YOLO.
+```bash
+uv run python src/data_prep.py
+```
+
+### 3. Train the Model
+This script fine-tunes the `yolov8m-pose.pt` model on the generated dataset.
+```bash
+uv run python src/train.py
+```
+
+### 4. Evaluate Performance
+This script calculates Precision, Recall, F1-Score, and Mean Angular Error on the validation set.
+```bash
+uv run python src/evaluate.py
+```
+
+### 5. Generate Visualizations
+This script generates sample images with Ground Truth vectors (Green) and Predicted vectors (Red for Tab, Blue for Hinge).
+```bash
+uv run python src/visualize.py
+```
+*The resulting images will be saved in the `visualizations/` directory.*
