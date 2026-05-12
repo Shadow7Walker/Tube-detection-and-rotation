@@ -8,7 +8,6 @@ __pycache__/
 *.pyd
 
 # Project Data & Images
-images/
 yolo_data/
 visualizations/
 *.jpg

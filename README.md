@@ -77,13 +77,16 @@ You will need to provide:
 
 ### 1. Setup Environment
 This project uses `uv` for fast dependency management.
-#### Note: if you already have uv installed and downloaded the entire git repository, you can skip to step 2, the environment will be set up automatically during the first run.
-To set up the environment and install the required libraries, run:
+
+> [!NOTE]
+> If you already have `uv` installed and cloned the repository, you can skip to Step 2! Dependencies will be managed automatically during the first run.
+
+To manually set up the environment and install the required libraries:
 ```bash
 uv init
 uv add ultralytics opencv-python pandas scikit-learn matplotlib
 ```
-*(Alternatively, you can use `pip install ultralytics opencv-python pandas scikit-learn matplotlib` in your standard Python environment).*
+*(Alternatively, you can use standard `pip`: `pip install ultralytics opencv-python pandas scikit-learn matplotlib`)*
 
 ### 2. Prepare the Data
 The data preparation script parses `annotations.csv`, generates the 3-keypoint topology (Center, Hinge, Tab), and splits the images into train/validation sets for YOLO.
