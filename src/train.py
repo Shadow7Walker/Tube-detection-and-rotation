@@ -11,7 +11,7 @@ def main():
     # but 100 epochs is a good default to ensure convergence.
     # GPU is automatically detected by ultralytics
     results = model.train(
-        data='yolo_data/dataset.yaml',
+        data=os.path.abspath('yolo_data/dataset.yaml'),
         epochs=100,
         imgsz=640,
         batch=8, # small batch size for 70 images
