@@ -1,0 +1,8 @@
+path: /home/void-walker/Project/AI-Zeon/Task1/yolo_data
+train: images/train
+val: images/val
+
+names:
+  0: tube
+
+kpt_shape: [2, 3] # number of keypoints, number of dims (x, y, visible)
