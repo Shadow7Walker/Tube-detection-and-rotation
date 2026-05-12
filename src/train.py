@@ -15,11 +15,11 @@ def main():
         epochs=100,
         imgsz=640,
         batch=8, # small batch size for 70 images
-        project='runs/pose2',
+        project=os.path.abspath('runs'),
         name='tube_detection'
     )
     
-    print("Training complete. Results saved to runs/pose2/tube_detection")
+    print("Training complete. Results saved to runs/tube_detection")
 
 if __name__ == '__main__':
     main()
