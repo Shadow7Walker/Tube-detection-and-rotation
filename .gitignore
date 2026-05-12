@@ -17,6 +17,7 @@ visualizations/
 *.bmp
 *.tif
 *.tiff
+!images/**
 
 # YOLO runs and model weights
 runs/
