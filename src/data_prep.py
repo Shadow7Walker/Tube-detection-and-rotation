@@ -52,19 +52,24 @@ def prepare_yolo_data(csv_path, img_dir, out_dir, img_width=640, img_height=480,
                     kp1_y = cy / img_height
                     kp1_v = 2 # visible
                     
-                    # Keypoint 2: Tip/Tab (approx 20 pixels away from center)
                     angle_rad = np.deg2rad(row['angle_deg'])
-                    # Y axis increases downwards, so -sin(angle) for typical mathematical angle 
-                    # assuming counter-clockwise is positive and 0 is right
-                    kp2_x_px = cx + 20 * np.cos(angle_rad)
-                    kp2_y_px = cy - 20 * np.sin(angle_rad)
                     
+                    # Keypoint 2: Hinge (opposite to tip)
+                    kp2_x_px = cx - 20 * np.cos(angle_rad)
+                    kp2_y_px = cy + 20 * np.sin(angle_rad)
                     kp2_x = kp2_x_px / img_width
                     kp2_y = kp2_y_px / img_height
                     kp2_v = 2
                     
-                    # class_id norm_cx norm_cy norm_w norm_h kp1_x kp1_y kp1_v kp2_x kp2_y kp2_v
-                    line = f"0 {norm_cx:.6f} {norm_cy:.6f} {norm_w:.6f} {norm_h:.6f} {kp1_x:.6f} {kp1_y:.6f} {kp1_v} {kp2_x:.6f} {kp2_y:.6f} {kp2_v}\n"
+                    # Keypoint 3: Tip/Tab (approx 20 pixels away from center)
+                    kp3_x_px = cx + 20 * np.cos(angle_rad)
+                    kp3_y_px = cy - 20 * np.sin(angle_rad)
+                    kp3_x = kp3_x_px / img_width
+                    kp3_y = kp3_y_px / img_height
+                    kp3_v = 2
+                    
+                    # class_id norm_cx norm_cy norm_w norm_h kp1_x kp1_y kp1_v kp2_x kp2_y kp2_v kp3_x kp3_y kp3_v
+                    line = f"0 {norm_cx:.6f} {norm_cy:.6f} {norm_w:.6f} {norm_h:.6f} {kp1_x:.6f} {kp1_y:.6f} {kp1_v} {kp2_x:.6f} {kp2_y:.6f} {kp2_v} {kp3_x:.6f} {kp3_y:.6f} {kp3_v}\n"
                     f.write(line)
 
     process_split(train_imgs, 'train')
@@ -78,7 +83,7 @@ val: images/val
 names:
   0: tube
 
-kpt_shape: [2, 3] # number of keypoints, number of dims (x, y, visible)
+kpt_shape: [3, 3] # number of keypoints, number of dims (x, y, visible)
 """
     with open(os.path.join(out_dir, 'dataset.yaml'), 'w') as f:
         f.write(yaml_content)

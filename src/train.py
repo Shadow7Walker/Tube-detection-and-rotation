@@ -3,8 +3,8 @@ from ultralytics import YOLO
 
 def main():
     # Load a model
-    # yolov8n-pose.pt is the nano pose model
-    model = YOLO('yolov8n-pose.pt')  
+    # yolov8m-pose.pt is the medium pose model
+    model = YOLO('yolov8m-pose.pt')  
 
     # Train the model
     # We use a lower number of epochs as it's a small dataset, 
@@ -15,11 +15,11 @@ def main():
         epochs=100,
         imgsz=640,
         batch=8, # small batch size for 70 images
-        project='runs/pose',
+        project='runs/pose2',
         name='tube_detection'
     )
     
-    print("Training complete. Results saved to runs/pose/tube_detection")
+    print("Training complete. Results saved to runs/pose2/tube_detection")
 
 if __name__ == '__main__':
     main()

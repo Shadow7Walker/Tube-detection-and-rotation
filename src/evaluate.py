@@ -47,9 +47,10 @@ def evaluate(model_path, csv_path, val_dir, dist_threshold=30.0):
         if result.keypoints is not None and result.keypoints.data is not None:
             kpts = result.keypoints.data.cpu().numpy() # [N, 2, 3]
             for obj_kpts in kpts:
-                # obj_kpts is [2, 3] -> (x, y, conf) for center and tip
+                # obj_kpts is [3, 3] -> (x, y, conf) for center, hinge, tip
                 center = obj_kpts[0][:2]
-                tip = obj_kpts[1][:2]
+                hinge = obj_kpts[1][:2]
+                tip = obj_kpts[2][:2]
                 pred_angle = calculate_angle(center, tip)
                 predictions.append((center, pred_angle))
                 
@@ -100,7 +101,7 @@ def evaluate(model_path, csv_path, val_dir, dist_threshold=30.0):
     return precision, recall, f1, mean_angle_error
 
 if __name__ == '__main__':
-    model_path = 'runs/pose/runs/pose/tube_detection/weights/best.pt'
+    model_path = 'runs/pose/runs/pose2/tube_detection/weights/best.pt'
     if not os.path.exists(model_path):
         print(f"Model not found at {model_path}. Please train first.")
     else:

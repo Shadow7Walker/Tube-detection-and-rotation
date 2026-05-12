@@ -1,0 +1,33 @@
+# Environments
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Project Data & Images
+images/
+yolo_data/
+visualizations/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tif
+*.tiff
+
+# YOLO runs and model weights
+runs/
+*.pt
+*.pth
+*.onnx
+
+# IDEs and OS files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
