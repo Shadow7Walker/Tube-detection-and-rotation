@@ -101,7 +101,7 @@ def evaluate(model_path, csv_path, val_dir, dist_threshold=30.0):
     return precision, recall, f1, mean_angle_error
 
 if __name__ == '__main__':
-    model_path = 'runs/pose/runs/pose2/tube_detection/weights/best.pt'
+    model_path = 'runs/pose2/tube_detection/weights/best.pt'
     if not os.path.exists(model_path):
         print(f"Model not found at {model_path}. Please train first.")
     else:
