@@ -77,7 +77,7 @@ You will need to provide:
 
 ### 1. Setup Environment
 This project uses `uv` for fast dependency management.
-# Note: if you already have uv installed and downloaded the entire git repository, you can skip to step 2, the environment will be set up automatically during the first run.
+#### Note: if you already have uv installed and downloaded the entire git repository, you can skip to step 2, the environment will be set up automatically during the first run.
 To set up the environment and install the required libraries, run:
 ```bash
 uv init
